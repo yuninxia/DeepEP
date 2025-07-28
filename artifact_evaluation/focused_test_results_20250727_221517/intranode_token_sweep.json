@@ -1,0 +1,140 @@
+[
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 512,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 42.09919619560242,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.02,
+      "dispatch_fp8_gbps": 202.07,
+      "dispatch_fp8_us": 96.61,
+      "dispatch_bf16_gbps": 254.09,
+      "dispatch_bf16_us": 149.01,
+      "combine_gbps": 203.86,
+      "combine_us": 185.73,
+      "tests_passed": true
+    }
+  },
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 1024,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 43.55785059928894,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.021,
+      "dispatch_fp8_gbps": 259.76,
+      "dispatch_fp8_us": 155.72,
+      "dispatch_bf16_gbps": 306.92,
+      "dispatch_bf16_us": 255.59,
+      "combine_gbps": 262.64,
+      "combine_us": 298.68,
+      "tests_passed": true
+    }
+  },
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 2048,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 43.488266468048096,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.028,
+      "dispatch_fp8_gbps": 299.69,
+      "dispatch_fp8_us": 268.81,
+      "dispatch_bf16_gbps": 333.44,
+      "dispatch_bf16_us": 468.56,
+      "combine_gbps": 299.28,
+      "combine_us": 522.03,
+      "tests_passed": true
+    }
+  },
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 4096,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 45.9006929397583,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.044,
+      "dispatch_fp8_gbps": 321.14,
+      "dispatch_fp8_us": 498.87,
+      "dispatch_bf16_gbps": 340.65,
+      "dispatch_bf16_us": 912.1,
+      "combine_gbps": 319.37,
+      "combine_us": 972.87,
+      "tests_passed": true
+    }
+  },
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 8192,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 50.484657764434814,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.075,
+      "dispatch_fp8_gbps": 334.59,
+      "dispatch_fp8_us": 960.78,
+      "dispatch_bf16_gbps": 340.82,
+      "dispatch_bf16_us": 1829.24,
+      "combine_gbps": 343.11,
+      "combine_us": 1817.01,
+      "tests_passed": true
+    }
+  },
+  {
+    "sweep_name": "token_sweep",
+    "sweep_param": "num_tokens",
+    "sweep_value": 16384,
+    "fixed_params": {
+      "hidden": 7168,
+      "num_topk": 8,
+      "num_experts": 256,
+      "num_processes": 8
+    },
+    "duration_sec": 59.047515869140625,
+    "returncode": 0,
+    "parsed_results": {
+      "layout_kernel_ms": 0.138,
+      "dispatch_fp8_gbps": 340.65,
+      "dispatch_fp8_us": 1887.66,
+      "dispatch_bf16_gbps": 350.7,
+      "dispatch_bf16_us": 3555.99,
+      "combine_gbps": 354.97,
+      "combine_us": 3513.3,
+      "tests_passed": true
+    }
+  }
+]

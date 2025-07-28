@@ -1,0 +1,358 @@
+[
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 1,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 66.05810809135437,
+    "returncode": 1,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [],
+      "dispatch_combine_us": [],
+      "dispatch_gbps": [],
+      "dispatch_us": [],
+      "combine_gbps": [],
+      "combine_us": [],
+      "dispatch_send_us": [],
+      "dispatch_recv_us": [],
+      "combine_send_us": [],
+      "combine_recv_us": []
+    }
+  },
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 2,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 66.79005241394043,
+    "returncode": 1,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [],
+      "dispatch_combine_us": [],
+      "dispatch_gbps": [],
+      "dispatch_us": [],
+      "combine_gbps": [],
+      "combine_us": [],
+      "dispatch_send_us": [],
+      "dispatch_recv_us": [],
+      "combine_send_us": [],
+      "combine_recv_us": []
+    }
+  },
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 4,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 73.08695483207703,
+    "returncode": 0,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [
+        151.81,
+        152.18,
+        152.25,
+        151.81,
+        152.45,
+        152.21,
+        151.85,
+        152.24
+      ],
+      "dispatch_combine_us": [
+        71.9,
+        71.73,
+        71.69,
+        71.9,
+        71.74,
+        71.72,
+        71.89,
+        71.7
+      ],
+      "dispatch_gbps": [
+        139.92,
+        139.41,
+        137.83,
+        138.14,
+        137.36,
+        138.96,
+        137.99,
+        137.57
+      ],
+      "dispatch_us": [
+        26.58,
+        26.68,
+        26.98,
+        26.92,
+        27.07,
+        26.76,
+        27.0,
+        27.03
+      ],
+      "combine_gbps": [
+        174.77,
+        176.93,
+        176.89,
+        178.43,
+        179.22,
+        179.53,
+        179.21,
+        179.3
+      ],
+      "combine_us": [
+        41.18,
+        40.67,
+        40.69,
+        40.33,
+        40.16,
+        40.09,
+        40.24,
+        40.14
+      ],
+      "dispatch_send_us": [
+        21.97,
+        22.66,
+        22.95,
+        22.21,
+        22.53,
+        22.41,
+        22.62,
+        22.88
+      ],
+      "dispatch_recv_us": [
+        6.69,
+        6.67,
+        6.73,
+        6.82,
+        6.75,
+        6.67,
+        6.6,
+        6.7
+      ],
+      "combine_send_us": [
+        31.02,
+        30.82,
+        31.82,
+        30.51,
+        30.77,
+        29.29,
+        28.99,
+        30.87
+      ],
+      "combine_recv_us": [
+        10.52,
+        10.5,
+        10.4,
+        10.52,
+        10.52,
+        10.51,
+        10.43,
+        10.46
+      ],
+      "dispatch_combine_gbps_avg": 152.1,
+      "dispatch_combine_us_avg": 71.78375000000001,
+      "dispatch_gbps_avg": 138.3975,
+      "dispatch_us_avg": 26.877499999999998,
+      "combine_gbps_avg": 178.035,
+      "combine_us_avg": 40.4375,
+      "dispatch_send_us_avg": 22.52875,
+      "dispatch_recv_us_avg": 6.70375,
+      "combine_send_us_avg": 30.51125,
+      "combine_recv_us_avg": 10.482499999999998
+    }
+  },
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 8,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 72.93428540229797,
+    "returncode": 0,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [
+        181.6,
+        181.3,
+        181.66,
+        181.31,
+        181.74,
+        181.56,
+        181.64,
+        181.32
+      ],
+      "dispatch_combine_us": [
+        121.41,
+        121.61,
+        121.37,
+        121.61,
+        121.32,
+        121.44,
+        121.38,
+        121.6
+      ],
+      "dispatch_gbps": [
+        189.11,
+        187.65,
+        188.13,
+        185.04,
+        184.21,
+        177.45,
+        186.35,
+        187.61
+      ],
+      "dispatch_us": [
+        39.72,
+        40.03,
+        39.93,
+        40.59,
+        40.78,
+        42.33,
+        40.31,
+        40.04
+      ],
+      "combine_gbps": [
+        193.85,
+        194.61,
+        190.38,
+        197.04,
+        197.08,
+        196.95,
+        195.86,
+        191.39
+      ],
+      "combine_us": [
+        74.99,
+        74.7,
+        76.36,
+        73.77,
+        73.76,
+        73.81,
+        74.22,
+        75.95
+      ],
+      "dispatch_send_us": [
+        32.95,
+        32.83,
+        32.75,
+        33.03,
+        32.39,
+        32.86,
+        32.96,
+        32.36
+      ],
+      "dispatch_recv_us": [
+        8.55,
+        8.98,
+        8.89,
+        9.6,
+        8.82,
+        9.13,
+        8.54,
+        8.73
+      ],
+      "combine_send_us": [
+        51.69,
+        54.37,
+        53.82,
+        51.84,
+        54.72,
+        54.53,
+        52.05,
+        51.25
+      ],
+      "combine_recv_us": [
+        17.22,
+        17.2,
+        17.14,
+        17.3,
+        17.12,
+        17.03,
+        17.14,
+        17.27
+      ],
+      "dispatch_combine_gbps_avg": 181.51624999999999,
+      "dispatch_combine_us_avg": 121.4675,
+      "dispatch_gbps_avg": 185.69374999999997,
+      "dispatch_us_avg": 40.46625,
+      "combine_gbps_avg": 194.64499999999998,
+      "combine_us_avg": 74.69500000000001,
+      "dispatch_send_us_avg": 32.76625,
+      "dispatch_recv_us_avg": 8.905000000000001,
+      "combine_send_us_avg": 53.033750000000005,
+      "combine_recv_us_avg": 17.177500000000002
+    }
+  },
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 16,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 66.04945945739746,
+    "returncode": 1,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [],
+      "dispatch_combine_us": [],
+      "dispatch_gbps": [],
+      "dispatch_us": [],
+      "combine_gbps": [],
+      "combine_us": [],
+      "dispatch_send_us": [],
+      "dispatch_recv_us": [],
+      "combine_send_us": [],
+      "combine_recv_us": []
+    }
+  },
+  {
+    "sweep_name": "topk_sweep",
+    "sweep_param": "num_topk",
+    "sweep_value": 32,
+    "fixed_params": {
+      "num_tokens": 128,
+      "hidden": 7168,
+      "num_experts": 288,
+      "num_processes": 8
+    },
+    "duration_sec": 66.46988320350647,
+    "returncode": 1,
+    "parsed_results": {
+      "buffer_size_mb": 2115.111296,
+      "dispatch_combine_gbps": [],
+      "dispatch_combine_us": [],
+      "dispatch_gbps": [],
+      "dispatch_us": [],
+      "combine_gbps": [],
+      "combine_us": [],
+      "dispatch_send_us": [],
+      "dispatch_recv_us": [],
+      "combine_send_us": [],
+      "combine_recv_us": []
+    }
+  }
+]
