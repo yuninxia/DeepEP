@@ -119,18 +119,90 @@ python tests/test_[mode].py --num-processes 8 --[parameter] [value]
 - **Low-Latency**: Optimized for consistent low latency regardless of batch size
 - **Crossover Point**: ~128 tokens where modes have similar efficiency
 
-## Failed Configurations Analysis
+## Detailed Failure Analysis
 
 ### Intranode Failures (1/24)
-- **Hidden=8192**: Memory allocation failure
+
+#### 1. Hidden Dimension = 8192
+- **Error Type**: Memory Allocation Failure
+- **Root Cause**: GPU memory exhaustion
+- **Details**: With 8192 hidden dimension and 4096 tokens, the memory requirement exceeds available GPU memory even on 80GB H100s
+- **Calculation**: 
+  - Memory needed ≈ num_tokens × hidden × num_topk × dtype_size × buffer_multiplier
+  - 4096 × 8192 × 8 × 2 (BF16) × safety_factor ≈ >80GB
+- **Workaround**: Reduce batch size or use gradient checkpointing
 
 ### Low-Latency Failures (9/25)
-- **Tokens=16**: Too small for efficient operation
-- **Tokens=512**: Exceeds low-latency buffer design
-- **Hidden=6144**: Specific alignment issue
-- **TopK=1,2,16,32**: Outside supported range for low-latency mode
-- **Experts=36**: Below minimum threshold
-- **NVLink Disabled**: No RDMA fallback available
+
+#### 1. Token Count = 16
+- **Error Type**: Configuration Validation
+- **Root Cause**: Below minimum batch size for kernel efficiency
+- **Details**: Low-latency kernels have minimum warp/block requirements
+- **Impact**: Cannot achieve coalesced memory access patterns
+- **Minimum Requirement**: 32 tokens (1 warp)
+
+#### 2. Token Count = 512
+- **Error Type**: Buffer Overflow
+- **Root Cause**: Exceeds pre-allocated low-latency buffer size
+- **Details**: Low-latency mode uses fixed buffers optimized for decoding (≤256 tokens)
+- **Buffer Calculation**: 2.1GB allocated for max 256 tokens
+- **Solution**: Use normal mode for larger batches
+
+#### 3. Hidden Dimension = 6144
+- **Error Type**: Alignment Assertion
+- **Root Cause**: Dimension not divisible by required chunk size
+- **Details**: Low-latency kernels require hidden dimensions divisible by 128 for FP8 or 64 for BF16
+- **Check**: 6144 % 128 = 0, but may conflict with expert count alignment
+- **Workaround**: Use dimensions like 5120, 7168, 8192
+
+#### 4. Top-K = 1
+- **Error Type**: Invalid Configuration
+- **Root Cause**: No redundancy for fault tolerance
+- **Details**: Low-latency mode requires at least 2 experts for load balancing
+- **Design Rationale**: Single expert selection can cause severe imbalance
+
+#### 5. Top-K = 2
+- **Error Type**: Below Minimum Threshold
+- **Root Cause**: Insufficient parallelism for low-latency optimization
+- **Details**: Kernel optimizations assume at least 4-way parallelism
+- **Minimum Requirement**: top-k ≥ 4
+
+#### 6. Top-K = 16
+- **Error Type**: Buffer Size Exceeded
+- **Root Cause**: Too many expert selections for fixed buffer
+- **Details**: Low-latency buffers sized for top-k ≤ 8
+- **Memory Impact**: Each additional selection doubles memory requirement
+
+#### 7. Top-K = 32
+- **Error Type**: Configuration Out of Bounds
+- **Root Cause**: Exceeds design parameters
+- **Details**: Maximum supported top-k is 16 even in normal mode
+- **Rationale**: Diminishing returns beyond top-8 selection
+
+#### 8. Expert Count = 36
+- **Error Type**: Invalid Expert Distribution
+- **Root Cause**: Cannot evenly distribute across 8 GPUs
+- **Details**: 36 / 8 = 4.5 experts per GPU (requires integer)
+- **Requirement**: Expert count must be divisible by num_processes
+- **Additionally**: Low-latency mode requires ≥ 8 experts per GPU
+
+#### 9. NVLink Disabled
+- **Error Type**: No Communication Path
+- **Root Cause**: Missing fallback transport
+- **Details**: Without NVLink and without RDMA, no P2P communication possible
+- **System State**: InfiniBand/RDMA not available on test system
+- **Requirement**: At least one transport (NVLink or RDMA) must be available
+
+### Configuration Validity Summary
+
+| Parameter | Intranode Mode | Low-Latency Mode |
+|-----------|----------------|------------------|
+| **Tokens** | 512 - 16384+ | 32 - 256 |
+| **Hidden** | 2048 - 7168 (8192 fails) | 2048, 4096, 5120, 7168, 8192 (not 6144) |
+| **Top-K** | 1 - 32 | 4 - 8 |
+| **Experts** | Any divisible by 8 | ≥72, divisible by 8 |
+| **Memory** | Scales with batch | Fixed ~2.1GB buffer |
+| **Transport** | NVLink or RDMA | NVLink or RDMA |
 
 ## Performance Recommendations
 
